@@ -1,0 +1,44 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: travel-planner
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/travel_planner?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:}
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+app:
+  jwt-secret: ${JWT_SECRET:dev-only-change-me-in-production}
+  jwt-expire-hours: 72
+  # DeepSeek 大模型（智能规划）。没有 Key 时系统自动使用本地模拟规划，不影响演示。
+  deepseek:
+    api-key: ${DEEPSEEK_API_KEY:}
+    base-url: https://api.deepseek.com
+    model: deepseek-chat
+  # 高德开放平台 Web服务 Key（地理编码/路径规划/天气/POI）
+  amap:
+    key: ${AMAP_KEY:}
+    base-url: https://restapi.amap.com
+
+logging:
+  level:
+    com.travelplanner: info

@@ -1,0 +1,18 @@
+# Build artifacts
+target/
+dist/
+node_modules/
+*.jar
+*.log
+source.zip
+
+# Secrets / local config
+.env
+*.local.yml
+application-local.yml
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
